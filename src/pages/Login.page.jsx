@@ -3,11 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Logo, FormRow } from "../components";
 import Wrapper from "../styles/styled/Login.styled";
 import { useState } from "react";
+import useInout from "../hooks/useInput";
 
 const Login = () => {
   const { isLoading, setIsLoading } = useState(false);
 
   const navigate = useNavigate();
+
+  const {} = useInout("");
 
   return (
     <Wrapper className="full-page">
