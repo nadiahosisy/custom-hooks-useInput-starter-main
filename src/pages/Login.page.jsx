@@ -29,6 +29,8 @@ const Login = () => {
     handleBlur: handlePasswordBlur,
   } = useInput("Please enter your email!");
 
+  const handleSubmit = (e) => {};
+
   return (
     <Wrapper className="full-page">
       <form className="form">
