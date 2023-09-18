@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useInout = (massage, validationFn = null) => {
+const useInput = (massage, validationFn = null) => {
   const { value, setValue } = useState("");
   const { error, setError } = useState({
     isError: false,
@@ -40,4 +40,4 @@ const useInout = (massage, validationFn = null) => {
   };
 };
 
-export default useInout;
+export default useInput;
