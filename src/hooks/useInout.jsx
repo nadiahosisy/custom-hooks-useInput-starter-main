@@ -16,6 +16,15 @@ const useInout = (massage, validationFn = null) => {
     if (validationFn) {
       isError = validationFn(value);
     }
+
+    if (value === "" || isError) {
+      setError({
+        isError: true,
+        massage,
+      });
+    } else {
+      resetError();
+    }
   };
   const resetError = () => {
     setError({
