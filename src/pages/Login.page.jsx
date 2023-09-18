@@ -40,6 +40,11 @@ const Login = () => {
       handleEmailBlur();
       handlePasswordBlur();
       return;
+    } else {
+      setTimeout(() => {
+        setIsLoading(false);
+        localStorage.setItem("userData ");
+      }, 3000);
     }
   };
 
