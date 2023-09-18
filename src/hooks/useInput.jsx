@@ -1,15 +1,17 @@
 import { useState } from "react";
 
-const useInput = (massage, validationFn = null) => {
-  const { value, setValue } = useState("");
-  const { error, setError } = useState({
+const useInput = (message, validationFn = null) => {
+  const [value, setValue] = useState("");
+  const [error, setError] = useState({
     isError: false,
-    massage: "",
+    message: "",
   });
+
   const handleChange = (e) => {
     resetError();
     setValue(e.target.value);
   };
+
   const handleBlur = () => {
     let isError = false;
 
@@ -20,18 +22,20 @@ const useInput = (massage, validationFn = null) => {
     if (value === "" || isError) {
       setError({
         isError: true,
-        massage,
+        message,
       });
     } else {
       resetError();
     }
   };
+
   const resetError = () => {
     setError({
       isError: false,
-      massage: "",
+      message: "",
     });
   };
+
   return {
     value,
     error,

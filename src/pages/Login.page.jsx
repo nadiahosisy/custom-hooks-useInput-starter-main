@@ -1,12 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Logo, FormRow } from "../components";
-import Wrapper from "../styles/styled/Login.styled";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import useInput from "../hooks/useInput";
+
 import { validateEmail } from "../utils/validateEmail";
 
+import { Logo, FormRow } from "../components";
+import Wrapper from "../styles/styled/Login.styled";
+
 const Login = () => {
-  const { isLoading, setIsLoading } = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -15,21 +18,23 @@ const Login = () => {
     error: nameError,
     handleChange: handleNameChange,
     handleBlur: handleNameBlur,
-  } = useInput("Please enter your name!");
-  const {
-    value: email,
-    error: emailError,
-    handleChange: handleEmailChange,
-    handleBlur: handleEmailBlur,
-  } = useInput("Please enter valid email!", validateEmail);
+  } = useInput("Please enter your name");
+
   const {
     value: password,
     error: passwordError,
     handleChange: handlePasswordChange,
     handleBlur: handlePasswordBlur,
-  } = useInput("Please enter your email!");
+  } = useInput("Please enter your password");
 
-  const handleSubmit = (e) => {
+  const {
+    value: email,
+    error: emailError,
+    handleChange: handleEmailChange,
+    handleBlur: handleEmailBlur,
+  } = useInput("Please enter a valid email", validateEmail);
+
+  const onSubmit = (e) => {
     e.preventDefault();
 
     setIsLoading(true);
@@ -44,49 +49,47 @@ const Login = () => {
       setTimeout(() => {
         setIsLoading(false);
         localStorage.setItem("userData", JSON.stringify({ name, email }));
-      }, 3000);
-      navigate("/main");
+        navigate("/main");
+      }, 2000);
     }
   };
 
   return (
     <Wrapper className="full-page">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={onSubmit}>
         <Logo />
         {/* name field */}
         <FormRow
+          error={nameError.isError}
           type="text"
           name="name"
           value={name}
-          handleBlur={handleNameBlur}
           handleChange={handleNameChange}
-          error={nameError.isError}
+          handleBlur={handleNameBlur}
           message={nameError.message}
         />
-
         {/* email field */}
         <FormRow
+          error={emailError.isError}
           type="email"
           name="email"
           value={email}
-          handleBlur={handleEmailBlur}
           handleChange={handleEmailChange}
-          error={emailError.isError}
+          handleBlur={handleEmailBlur}
           message={emailError.message}
         />
         {/* password field */}
         <FormRow
+          error={passwordError.isError}
           type="password"
           name="password"
           value={password}
-          handleBlur={handlePasswordBlur}
           handleChange={handlePasswordChange}
-          error={passwordError.isError}
+          handleBlur={handlePasswordBlur}
           message={passwordError.message}
         />
-        <button type="submit" className="btn btn-block">
-          {/* Loading */}
-          {isLoading ? "Loading..." : "log In"}
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
+          {isLoading ? "loading..." : "Log In"}
         </button>
         <Link to="/" className="btn btn-block btn-light mt">
           Back
