@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Logo, FormRow } from "../components";
 import Wrapper from "../styles/styled/Login.styled";
 import { useState } from "react";
 
 const Login = () => {
-  const { isLoading, setLoading } = useState(false);
+  const { isLoading, setIsLoading } = useState(false);
+
+  const navigate = useNavigate();
+
   return (
     <Wrapper className="full-page">
       <form className="form">
