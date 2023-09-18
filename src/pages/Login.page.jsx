@@ -47,6 +47,7 @@ const Login = () => {
 
         <button type="submit" className="btn btn-block">
           {/* Loading */}
+          {isLoading ? "Loading..." : "log In"}
         </button>
         <Link to="/" className="btn btn-block btn-light mt">
           Back
