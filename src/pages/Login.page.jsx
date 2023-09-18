@@ -29,7 +29,11 @@ const Login = () => {
     handleBlur: handlePasswordBlur,
   } = useInput("Please enter your email!");
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+  };
 
   return (
     <Wrapper className="full-page">
