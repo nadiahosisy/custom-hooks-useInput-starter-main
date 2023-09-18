@@ -33,6 +33,14 @@ const Login = () => {
     e.preventDefault();
 
     setIsLoading(true);
+
+    if (!name || !email || validateEmail(email) || !password) {
+      setIsLoading(false);
+      handleNameBlur();
+      handleEmailBlur();
+      handlePasswordBlur();
+      return;
+    }
   };
 
   return (
