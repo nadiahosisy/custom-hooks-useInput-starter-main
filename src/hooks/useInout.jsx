@@ -32,6 +32,12 @@ const useInout = (massage, validationFn = null) => {
       massage: "",
     });
   };
+  return {
+    value,
+    error,
+    handleChange,
+    handleBlur,
+  };
 };
 
 export default useInout;
